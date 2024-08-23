@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+</head>
+<body>
+    <h1>Excel</h1>
+    <section>
+        <div class="wrap-inputs">
+            <label for="nome">Descrição</label>
+            <input id="nome" type="text" placeholder="Descrição">
+        </div>
+        <div class="wrap-inputs">
+            <label for="valor">Valor</label>
+            <input id="valor" type="number" placeholder="Valor">
+        </div>
+        <div class="wrap-inputs">
+            <label for="quant">Quantidade un.</label>
+            <input id="quant" type="number" placeholder="Quantidade">
+        </div>
+        <button onclick="adicionarLinha()">Adicionar</button>
+    </section>
+    <section>
+        <table id="tabela">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Quantidade un.</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button onclick="expExcel()" class="btn"> gerar bicho</button>
+    </section>
+</body>
+</html>
