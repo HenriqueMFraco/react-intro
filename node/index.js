@@ -11,25 +11,26 @@ app.get('/', (req, res) => {
   res.send(nome);
 });
 
-app.get('/visualizar', (req, res) => {
+app.get('/visu', (req, res) => {
   res.send(personList);
 });
 
-app.post('/add', (req, res) => {
+app.put('/add', (req, res) => {
   const { name, age } = req.body;
   personList.push({ name, age });
   res.send(`Usuário recebido, nome: ${name}`);
 });
 
-app.post('/re/:id', (req, res) => {
+app.delete('/re/:id', (req, res) => {
   const { id } = req.params;
   const index = parseInt(id, 10); 
 
   if (index >= 0 && index < personList.length) {
     const removedPerson = personList.splice(index, 1)[0]; 
     res.send(`Usuário ${removedPerson.name} removido.`);
-  } else {
-    res.status(404).send('Usuário não encontrado.');
+  }
+  else{
+    res.send("morreu")
   }
 });
 
