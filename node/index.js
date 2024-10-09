@@ -1,10 +1,9 @@
 const express = require('express');
+const db = require('./db');
 const app = express();
-
 app.use(express.json());
-
 const port = 3000;
-let carList = [];
+
 
 app.get('/', (req, res) => {
   res.send("Bem-vindo! Links para movimentação:\n" +
@@ -17,84 +16,85 @@ app.get('/', (req, res) => {
 });
 
 app.get('/visu', (req, res) => {
-  res.send(carList);
+  db.query(
+    `SELECT * FROM veiculos`,
+    function (err, results, fields) {
+      if (err) {
+        console.error('Erro na consulta:', err);
+        return res.status(500).json({ error: 'Erro ao consultar veículos' });
+      }
+      return res.json(results);
+    }
+  );
 });
 
 app.get('/visu/:id', (req, res) => {
-  const { id } = req.params;
-  const car = carList.find(car => car.id === parseInt(id));
-
-  if (car) {
-    res.send(car);
-  } else {
-    res.status(404).send("Carro não encontrado.");
-  }
+const { id } = req.params;
+  db.query(
+    `SELECT ${id} FROM veiculos`,
+    function (err, results, fields) {
+      if (err) {
+        console.error('Erro na consulta:', err);
+        return res.status(500).json({ error: 'Erro ao consultar veículos' });
+      }
+      // Retorna os resultados como um objeto JSON
+      return res.json(results);
+    }
+  );
 });
 
 app.post('/add', (req, res) => {
-  const { marca, modelo, ano, prop, cor } = req.body;
-  const newCar = { id: carList.length + 1, marca, modelo, ano, prop, cor };
-  carList.push(newCar);
-  res.status(201).send(`Carro recebido: ${marca}, ${modelo}, ${ano}, ${prop}, ${cor}`);
+  const {marca, modelo, ano, prop, cor} = req.body;
+  db.query(
+    `INSERT INTO Veiculos (marca, modelo, ano, prop, cor) VALUES (?, ?, ?, ?, ?)`,
+    [marca, modelo, Number(ano), prop, cor],
+    function (err, results, fields){
+      if (err){
+        console.error('erro na inserção', err)
+        return
+      }
+      console.log(results)
+      console.log(fields)
+    }
+  )
+  res.send(`Carro recebido: ${marca}, ${modelo}, ${ano}, ${prop}, ${cor}`);
 });
 
 app.put('/upt/:id', (req, res) => {
-  const { id } = req.params;
-  const index = carList.findIndex(car => car.id === parseInt(id));
-
-  if (index !== -1) {
-    const { marca, modelo, ano, prop, cor } = req.body;
-    carList[index] = { id: parseInt(id), marca, modelo, ano, prop, cor };
+   const { id } = req.params;
+   const {marca, modelo, ano, prop, cor} = req.body;
+    db.query(
+      `UPDATE veiculos set marca = ?, modelo = ?, ano = ?, prop = ?, cor = ? WHERE id = ?`,
+      [marca, modelo, Number(ano), prop, cor],
+      function (err, results, fields){
+        if (err){
+          console.error('erro na inserção', err)
+          return
+        }
+        console.log(results)
+        console.log(fields)
+      }
+    );
     res.send(`Carro atualizado: ${marca}, ${modelo}, ${ano}, ${prop}, ${cor}`);
-  } else {
-    res.status(404).send("Carro não encontrado.");
-  }
-});
+  })
 
-app.put('/upt/:id/:campo', (req, res) => {
-  const { id, campo } = req.params;
-  const index = carList.findIndex(car => car.id === parseInt(id));
-
-  if (index !== -1) {
-    if (req.body[campo]) {
-      carList[index][campo] = req.body[campo];
-      res.send(`Campo ${campo} do carro atualizado para: ${req.body[campo]}`);
-    } else {
-      res.status(400).send("Campo inválido ou não fornecido.");
-    }
-  } else {
-    res.status(404).send("Carro não encontrado.");
-  }
-});
-
-app.delete('/re/:id', (req, res) => {
+ app.delete('/re/:id', (req, res) => {
   const { id } = req.params;
-  const index = carList.findIndex(car => car.id === parseInt(id));
-
-  if (index !== -1) {
-    const removedCar = carList.splice(index, 1)[0];
-    res.send(`Carro ${removedCar.marca} removido.`);
-  } else {
-    res.status(404).send("Carro não encontrado.");
-  }
-});
-
-const deleteByField = (req, res, field) => {
-  const value = req.params[field];
-  const initialLength = carList.length;
-  carList = carList.filter(car => car[field] !== value);
-
-  if (carList.length < initialLength) {
-    res.send(`Veículos com ${field} ${value} removidos.`);
-  } else {
-    res.status(404).send(`Nenhum veículo encontrado com esse ${field}.`);
-  }
-};
-
-app.delete('/re/:id/:marca', (req, res) => deleteByField(req, res, 'marca'));
-app.delete('/re/:id/:ano', (req, res) => deleteByField(req, res, 'ano'));
-app.delete('/re/:id/:prop', (req, res) => deleteByField(req, res, 'prop'));
-app.delete('/re/:id/:cor', (req, res) => deleteByField(req, res, 'cor'));
+  const {marca, modelo, ano, prop, cor} = req.body;
+    db.query(
+      `DELETE FROM veiculos WHERE id = ?`,
+      [id, marca, modelo, Number(ano), prop, cor],
+      function (err, results, fields){
+        if (err){
+          console.error('erro na inserção', err)
+          return
+        }
+        console.log(results)
+        console.log(fields)
+      }
+    )
+    res.send(`Carro deletado`);
+    })
 
 app.listen(port, () => {
   console.log(`API de veículos ouvindo na porta ${port}`);
