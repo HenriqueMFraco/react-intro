@@ -83,7 +83,7 @@ app.put('/upt/:id', (req, res) => {
   const {marca, modelo, ano, prop, cor} = req.body;
     db.query(
       `DELETE FROM veiculos WHERE id = ?`,
-      [id, marca, modelo, Number(ano), prop, cor],
+      [Number(id), marca, modelo, Number(ano), prop, cor],
       function (err, results, fields){
         if (err){
           console.error('erro na inserção', err)
