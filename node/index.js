@@ -11,8 +11,7 @@ app.get('/', (req, res) => {
            "--get-- /visu/:id - para visualizar veículo específico;\n" +
            "--post-- /add - para adicionar um veículo;\n" +
            "--delete-- /re/:id - para remover um veículo pelo ID;\n" +
-           "--put-- /upt/:id - para atualizar um veículo pelo ID;\n" +
-           "--put-- /upt/:id/:campo - para atualizar um campo específico de um veículo pelo ID;\n");
+           "--put-- /upt/:id - para atualizar um veículo pelo ID;\n");
 });
 
 app.get('/visu', (req, res) => {
@@ -91,9 +90,9 @@ app.put('/upt/:id', (req, res) => {
         }
         console.log(results)
         console.log(fields)
+        res.send(`Carro deletado`);
       }
     )
-    res.send(`Carro deletado`);
     })
 
 app.listen(port, () => {
