@@ -1,7 +1,9 @@
-import "./style.css"
+import "../index.css"
 
 export default function Footer(){
     return(
-        <div className="footer">Footer</div>
+        <div className="footer">
+            <h3>rodapé</h3>
+        </div>
     )
 }
