@@ -1,11 +1,17 @@
 import "../index.css"
-import Inputs from "./MyInput.jsx"
+import SENAI from "./SENAI.jsx"
+import Balacobaco from "./Balacobaco.jsx"
+import Cont from "./Cont.jsx"
+import PostInsta from "./Instagram.jsx"
 
 export default function PageContent(){
     <div>exercicios</div>
     return(
         <>
-            <Inputs />
+            <SENAI />
+            <Balacobaco />
+            <Cont />
+            <PostInsta />
         </>
     )
 }
