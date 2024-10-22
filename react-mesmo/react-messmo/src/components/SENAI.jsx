@@ -16,6 +16,7 @@ export default function SENAI() {
 
   return (
     <>
+      <h1>Escreva e faça aparecer o texto escondido</h1>
       <input value={campo} onChange={handleChange} />
       <div>{text}</div>
     </>

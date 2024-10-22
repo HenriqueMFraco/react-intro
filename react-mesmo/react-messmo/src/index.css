@@ -1,170 +1,284 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
 }
-body{
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #eee;
+  background: var(--color-background, #eee);
 }
-.card{
+
+.card {
   position: relative;
-  width: 360px;
-  min-height: 400px;
-  background: #fff;
+  width: 100%;
+  max-width: 360px;
+  background: var(--color-card, #fff);
   box-shadow: 15px 15px 60px rgba(0, 0, 0, .15);
   padding: 20px;
 }
-.card .top{
+
+.top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.card .top .userDeatils{
+
+.userDetails {
   display: flex;
   align-items: center;
 }
-.card .top .userDeatils .profileImg{
-  position: relative;
+
+.profileImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 8px;
-  overflow: hidden;
-}
-.cover{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  object-position: center;
-  cursor: pointer;
 }
-.card .top .userDeatils h3{
+
+h3 {
   font-size: 18px;
   color: #4d4d4f;
   font-weight: 700;
-  line-height: 1rem;
-  cursor: pointer;
 }
-.card .top .userDeatils span{
-  font-size: 0.75em;
-}
-.card .top .dot{
+
+.dot {
   transform: scale(0.6);
   cursor: pointer;
 }
-.imgBg{
-  position: relative;
+
+.imgBg {
   width: 100%;
   height: 320px;
-  margin: 10px 0 15px;
-  
+  margin: 10px 0;
 }
-.imgBg img{
-    height: 100%;
-    width: 100%;  
-}
-.btns{
+
+.btns {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.btns img{
-  max-width: 24px;
+
+.heart {
+  font-size: 24px; /*emoji size*/
   cursor: pointer;
 }
-.btns .left img{
-  margin-right: 8px;
-}
-.likes{
+
+.likes {
   margin-top: 5px;
-  font-size: 1em;
   color: #4d4d4f;
 }
-.message{
-  font-weight: 400;
+
+.message {
   margin-top: 5px;
   color: #777;
   line-height: 1.5em;
 }
-.message b{
+
+.message b {
   color: #262626;
 }
-.message span{
-  color: #1d92ff;
-  cursor: pointer;
-}
-.comments{
+
+.comments {
   margin-top: 10px;
-  align-items: center;
   color: #999;
 }
-.addComments{
+
+.addComments {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
-.addComments .userImg{
-  position: relative;
-  min-width: 30px;
+
+.userImg {
+  width: 30px;
   height: 30px;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 8px;
 }
-.addComments .text{
+
+.text {
   width: 100%;
   border: none;
   outline: none;
-  font-weight: 400;
   font-size: 18px;
   color: #262626;
 }
-.addComments .text::placeholder{
-  color: #777;
-}
-.postTime{
+
+.postTime {
   margin-top: 10px;
-  font-weight: 500;
   color: #777;
 }
 
-body.dark {
-  --color-background: #1f2023;
-  --color-foreground: #efefef;
-  --color-navbar: #efefef;
-  --color-footer: #3e3e3e;
+.character-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 400px;
+  margin: 20px auto;
 }
 
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none; 
+}
+
+.count {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.formulario-registro {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #1b8600;
+}
+
+.formulario-registro div {
+  margin-bottom: 15px;
+}
+
+.formulario-registro label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.formulario-registro input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.formulario-registro button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.formulario-registro button:hover {
+  background-color: #0056b3;
+}
+
+/* Cores para o modo escuro */
+body.dark {
+  --color-background: #1f2023; /* Cor de fundo */
+  --color-card: #2a2a2a;       /* Cor do cartao */
+  --color-text: #efefef;       /* Cor do texto */
+}
+
+body.dark input {
+  background-color: #333; /* Fundo dos inputs no modo escuro */
+  color: #efefef; /* Texto dos inputs no modo escuro */
+  border: 1px solid #555; /* Borda dos inputs no modo escuro */
+}
+
+body.dark div {
+  color: #efefef; /* Texto do div no modo escuro */
+}
+
+body.dark .Navbar {
+  background-color: #2a2a2a; /* Fundo da navbar no modo escuro */
+}
+
+body.dark .Navbar h3,
+body.dark .footer h3,
+body.dark .contador {
+  color: #efefef; /* Texto no modo escuro */
+}
+
+body.dark .footer {
+  background-color: #2a2a2a; /* Fundo do rodapé no modo escuro */
+}
+
+body.dark button {
+  background-color: #0056b3; /* Cor do botao no modo escuro */
+}
+
+body.dark button:hover {
+  background-color: #003d7a; /* Hover do botao no modo escuro */
+}
+
+/* Cores para o modo escuro */
+
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+  }
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+div {
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+}
 
 .Navbar {
-  font-family: Helvetica;
-  margin: 0;
-  text-decoration: none;
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  border-bottom: 3px solid #ccc;
-  padding: .5em 1em;
+  background-color: #f8f9fa;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.Navbar h3 {
+  margin: 0;
+  color: #333;
 }
 
 .footer {
-  background-color: var(--color-footer);
-  color: var(--color-foreground);
-  padding: 1em;
+  background-color: #f8f9fa;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #ccc;
 }
 
-@media (prefers-color-scheme: dark) {
-  .Navbar, .footer {
-    --color-background: #1f2023;
-    --color-foreground: #efefef;
-  }
+.footer h3 {
+  margin: 0;
+  color: #333;
+}
+
+.contador {
+  font-size: 24px;
+  margin-top: 10px;
+  color: #333;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }

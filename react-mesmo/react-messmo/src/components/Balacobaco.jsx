@@ -9,7 +9,7 @@ export default function Balacobaco() {
         <button onClick={() => setText('Balacobaco')}>
           Apareça!!!
         </button>
-        <button onClick={() => setText('Balacobaco')}>
+        <button onClick={() => setText('')}>
           Suma Carniça!!
         </button>
       </>
