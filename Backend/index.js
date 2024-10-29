@@ -69,7 +69,7 @@ app.put('/upt/:id', (req, res) => {
    const {marca, modelo, ano, prop, cor} = req.body;
     db.query(
       `UPDATE veiculos set marca = ?, modelo = ?, ano = ?, prop = ?, cor = ? WHERE id = ?`,
-      [marca, modelo, Number(ano), prop, cor],
+      [marca, modelo, Number(ano), prop, cor, Number(id)],
       function (err, results, fields){
         if (err){
           console.error('erro na inserção', err)
@@ -77,9 +77,9 @@ app.put('/upt/:id', (req, res) => {
         }
         console.log(results)
         console.log(fields)
+        res.send(`Carro atualizado: ${marca}, ${modelo}, ${ano}, ${prop}, ${cor}`);
       }
     );
-    res.send(`Carro atualizado: ${marca}, ${modelo}, ${ano}, ${prop}, ${cor}`);
   })
 
  app.delete('/re/:id', (req, res) => {
