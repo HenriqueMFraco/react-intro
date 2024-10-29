@@ -48,10 +48,18 @@ CREATE DATABASE concessionaria;
 USE concessionaria;
 
 CREATE TABLE veiculos(
-id INT NOT NULL,
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 marca VARCHAR(60) NOT NULL,
 modelo VARCHAR(60) NOT NULL,
 ano INT NOT NULL,
 prop VARCHAR(60) NOT NULL,
 cor VARCHAR(20) NOT NULL
 );
+
+SELECT * FROM veiculos;
+
+
+
+///////////////////FRONT E BACK/////////////////////
+
+npm i axios 
