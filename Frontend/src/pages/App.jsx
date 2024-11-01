@@ -1,7 +1,7 @@
-import NavBar from "./base/NavBar"
-import PageContent from "./base/PageContent"
-import Footer from "./base/Footer"
-import "./index.css"
+import NavBar from "../Components/NavBar"
+import PageContent from "../Components/PageContent"
+import Footer from "../Components/Footer"
+
 
 export default function Home(){
     return (
